@@ -1,36 +1,44 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Matching Game Project README
 
-## Getting Started
+## Introduction
+Welcome to the Matching Game Project! This project is a React.js application developed with TypeScript, aimed at providing an engaging and challenging matching game experience. Players will test their memory and skills by matching items within a specified number of tries. Upon successful matches, players will collect bananas, prominently displayed on the final screen as a testament to their success.
 
-First, run the development server:
+## Features
+- Engaging Matching Game: Players can enjoy a fun and interactive matching game experience.
+- Memory Testing: Test your memory and skills by matching items within a defined number of tries.
+- Dynamic Data Integration: Data for the game can be dynamically sourced from either a JSON file or a database, providing flexibility and scalability.
+- TypeScript Integration: Utilizes TypeScript to define data structures, ensuring type safety and proper integration of key fields.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+## Installation
+1. Clone the repository from [https://github.com/zenrsr/howler.git].
+2. Navigate to the project directory.
+3. Run `npm install` to install dependencies.
+4. Run `npm start` to start the development server.
+5. Open the application in your browser at `http://localhost:3000`.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## How to Play
+1. Upon launching the game, players will be presented with a grid of cards, each containing hidden items.
+2. Players can flip two cards at a time to reveal the hidden items.
+3. The objective is to match pairs of identical items within the specified number of tries.
+4. Upon successful matches, players will collect bananas, displayed prominently on the final screen.
+5. The game ends when all items have been successfully matched or when the maximum number of tries is reached.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Technologies Used
+- React.js: JavaScript library for building user interfaces.
+- TypeScript: Typed superset of JavaScript that compiles to plain JavaScript.
+- Figma: Design tool used for creating the design layout of the game.
+- JSON: Data interchange format used for dynamically sourcing game data.
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+## Credits
+- Developed by `Raga Sandeep Reddy`
+- Design provided by `brightCHAMPS`
 
-## Learn More
+## License
+This project is licensed under the MIT License
 
-To learn more about Next.js, take a look at the following resources:
+## Feedback
+We welcome any feedback or suggestions for improvement. Please feel free to [contact us](zenrsrdevr@gmail.com) with your thoughts.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+Thank you for playing the Matching Game! We hope you enjoy it!
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+[Live Site Link]: https://mizochase.netlify.app/
