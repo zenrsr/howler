@@ -6,6 +6,7 @@ import { Progress } from "./ui/progress";
 import { BananaIcon, HeartIcon } from "@/constants/iconsData";
 import MatchModal from "./MatchModal";
 import GameWinModal from "./GameWinModal";
+import GameOverModal from "./GameOverModal";
 
 interface MatchedCard {
   id: string;
@@ -139,7 +140,13 @@ const initialCards = [
     matched: false,
     flipped: false,
     icon: <HeartIcon className="text-blue-600" />,
-    fruit: fruits.A
+    fruit: (
+      <img
+        src="/images/appleBlue.png"
+        className="w-full h-full object-cover rounded-lg"
+        alt="Apple"
+      />
+    )
   },
   {
     id: "B",
@@ -147,7 +154,13 @@ const initialCards = [
     matched: false,
     flipped: false,
     icon: <HeartIcon className="text-blue-600" />,
-    fruit: fruits.B
+    fruit: (
+      <img
+        src="/images/bananaBlue.png"
+        className="w-full h-full object-cover rounded-lg"
+        alt="Apple"
+      />
+    )
   },
   {
     id: "C",
@@ -155,7 +168,13 @@ const initialCards = [
     matched: false,
     flipped: false,
     icon: <HeartIcon className="text-blue-600" />,
-    fruit: fruits.C
+    fruit: (
+      <img
+        src="/images/cherryBlue.png"
+        className="w-full h-full object-cover rounded-lg"
+        alt="Apple"
+      />
+    )
   },
   {
     id: "D",
@@ -163,7 +182,13 @@ const initialCards = [
     matched: false,
     flipped: false,
     icon: <HeartIcon className="text-blue-600" />,
-    fruit: fruits.D
+    fruit: (
+      <img
+        src="/images/berryBlue.png"
+        className="w-full h-full object-cover rounded-lg"
+        alt="Apple"
+      />
+    )
   },
   {
     id: "E",
@@ -171,7 +196,13 @@ const initialCards = [
     matched: false,
     flipped: false,
     icon: <HeartIcon className="text-blue-600" />,
-    fruit: fruits.E
+    fruit: (
+      <img
+        src="/images/melonBlue.png"
+        className="w-full h-full object-cover rounded-lg"
+        alt="Apple"
+      />
+    )
   },
   {
     id: "F",
@@ -179,7 +210,13 @@ const initialCards = [
     matched: false,
     flipped: false,
     icon: <HeartIcon className="text-blue-600" />,
-    fruit: fruits.F
+    fruit: (
+      <img
+        src="/images/orangeBlue.png"
+        className="w-full h-full object-cover rounded-lg"
+        alt="Apple"
+      />
+    )
   }
 ];
 
@@ -188,10 +225,11 @@ export default function MemoryGame() {
   const [flippedCards, setFlippedCards] = useState<Card[]>([]);
   const [moves, setMoves] = useState(0);
   const [matchedPairs, setMatchedPairs] = useState(0);
-  const [lives, setLives] = useState(9);
+  const [lives, setLives] = useState(5);
   const [showModal, setShowModal] = useState(false);
   const [matchedCardsInfo, setMatchedCardsInfo] = useState<MatchedCard[]>([]);
   const [isGameWon, setIsGameWon] = useState(false);
+  const [isGameOver, setIsGameOver] = useState(false);
   const [modalCount, setModalCount] = useState(0);
 
   useEffect(() => {
@@ -206,8 +244,7 @@ export default function MemoryGame() {
 
   useEffect(() => {
     if (lives === 0) {
-      alert("Game Over! You ran out of lives.");
-      restartGame();
+      setIsGameOver(true);
     }
   }, [lives]);
 
@@ -223,6 +260,7 @@ export default function MemoryGame() {
   const handlePlayAgain = () => {
     restartGame();
     setIsGameWon(false);
+    setIsGameOver(false);
   };
 
   const handleCloseModal = () => {
@@ -268,7 +306,7 @@ export default function MemoryGame() {
     }
   };
 
-  const renderIcon = (card: {
+  const renderIconPink = (card: {
     id?: string;
     color?: string;
     matched: any;
@@ -280,6 +318,31 @@ export default function MemoryGame() {
       return <span className="hidden"></span>;
     } else if (card.flipped) {
       return <span className="content">{card.fruit}</span>;
+    } else {
+      return (
+        <span className="content text-white font-bold text-3xl">
+          {card.icon}
+        </span>
+      );
+    }
+  };
+
+  const renderIconBlue = (card: {
+    id?: string;
+    color?: string;
+    matched: any;
+    flipped: any;
+    icon: any;
+    fruit: any;
+  }) => {
+    if (card.matched) {
+      return <span className="hidden"></span>;
+    } else if (card.flipped) {
+      return (
+        <span className="content h-full w-full transition-all ease-in-out duration-200 rounded-4xl">
+          {card.fruit}
+        </span>
+      );
     } else {
       return (
         <span className="content text-white font-bold text-3xl">
@@ -302,29 +365,38 @@ export default function MemoryGame() {
     setFlippedCards([]);
     setMoves(0);
     setMatchedPairs(0);
-    setLives(9); // Reset to initial number of lives
+    setLives(5); // Resets number of lives
   };
 
   return (
     <div className="flex flex-col items-center justify-center h-3/4 w-3/4 rounded-3xl bg-white bg-opacity-15 backdrop-blur-lg">
       <div className="w-full max-w-3xl px-4 md:px-6">
-        <div className="mb-4">
-          <Progress
-            className="h-2 rounded-full bg-gray-300 dark:bg-gray-800"
-            value={(matchedPairs / (initialCards.length / 2)) * 100}
-          />
-        </div>
-        <div className="flex gap-4 mb-4 text-white">
+        <h1 className="text-3xl font-bold mb-3 text-center bg-clip-text text-transparent bg-gradient-to-r from-green-200 via-green-400 to-green-500">
+          Help Mizo get some{" "}
+          <span className="bg-clip-text text-transparent bg-gradient-to-r from-yellow-200 via-yellow-300 to-yellow-400">
+            Bananas!
+          </span>
+        </h1>
+        <div className="flex w-full gap-4 mb-4 text-white justify-between items-center">
           <button
             className="px-4 py-2 bg-blue-500 text-white rounded-lg"
             onClick={restartGame}
           >
             Restart Game
           </button>
-          <div>Moves: {moves}</div>
-          <div>Matched Pairs: {matchedPairs}</div>
-          <div>Lives: {lives}</div>
+          <div className="flex items-center gap-4">
+            <div>Moves: {moves}</div>
+            <div>Matched Pairs: {matchedPairs}</div>
+            <div>Lives: {lives}</div>
+          </div>
         </div>
+        <div className="mb-4">
+          <Progress
+            className="h-4 rounded-full bg-gray-300 dark:bg-gray-800"
+            value={(matchedPairs / (initialCards.length / 2)) * 100}
+          />
+        </div>
+
         <div className="flex gap-4 ">
           <div className="grid grid-cols-3 gap-4">
             {cards
@@ -337,7 +409,7 @@ export default function MemoryGame() {
                   }`}
                   onClick={() => handleClick(card)}
                 >
-                  {renderIcon(card)}
+                  {renderIconPink(card)}
                 </div>
               ))}
           </div>
@@ -352,12 +424,12 @@ export default function MemoryGame() {
                   }`}
                   onClick={() => handleClick(card)}
                 >
-                  {renderIcon(card)}
+                  {renderIconBlue(card)}
                 </div>
               ))}
           </div>
         </div>
-        {/* Modal Component */}
+        {/* Modal Components */}
         <MatchModal
           isOpen={showModal}
           onClose={handleCloseModal}
@@ -366,6 +438,7 @@ export default function MemoryGame() {
           modalCount={modalCount}
         />
         {isGameWon && <GameWinModal onPlayAgain={handlePlayAgain} />}
+        {isGameOver && <GameOverModal onPlayAgain={handlePlayAgain} />}
       </div>
     </div>
   );

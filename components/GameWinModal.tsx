@@ -20,7 +20,7 @@ const GameWinModal: React.FC<GameWinModalProps> = ({ onPlayAgain }) => {
       <div className="relative bg-gray-100 p-8 rounded-lg shadow-lg flex flex-col items-center justify-center gap-4">
         <Confetti width={width / 2} height={height} />
         <h1 className="text-3xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-purple-400 to-yellow-400">
-          Congratulations! You have Won!
+          Mizo is grateful for the <span className="font-bold">Bananas!</span>
         </h1>
         <Image
           src="/images/success.png"

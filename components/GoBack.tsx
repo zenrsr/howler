@@ -1,4 +1,5 @@
 "use client";
+import Image from "next/image";
 import { useRouter } from "next/navigation";
 import React from "react";
 const GoBackButton = () => {
@@ -6,10 +7,17 @@ const GoBackButton = () => {
 
   return (
     <button
-      className="fixed top-2 left-2 px-4 py-2 text-white bg-blue-500 hover:bg-blue-700 rounded"
+      className="fixed top-2 left-2 px-4 py-2"
       onClick={() => router.back()}
+      title="Go Back"
     >
-      Go Back
+      <Image
+        src="/images/goBack.png"
+        height={100}
+        width={100}
+        alt="back"
+        className="hover:scale-110 transition-all ease-in-out duration-300"
+      />
     </button>
   );
 };

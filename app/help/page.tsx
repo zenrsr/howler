@@ -1,6 +1,6 @@
 "use client";
 import GoBackButton from "@/components/GoBack";
-import NextStep from "@/components/NexxtStep";
+import Yes from "@/components/Yes";
 import { useRouter } from "next/navigation";
 import React from "react";
 
@@ -22,8 +22,8 @@ const Help = () => {
         }}
       >
         <GoBackButton />
-        <div className="flex w-auto h-auto rounded-full translate-x-[100%] translate-y-[100%]">
-          <NextStep handleClick={handleClick} />
+        <div className="flex w-auto h-auto rounded-full translate-x-[150%] translate-y-[80%]">
+          <Yes handleClick={handleClick} />
         </div>
       </div>
     </main>

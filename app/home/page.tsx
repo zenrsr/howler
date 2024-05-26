@@ -19,15 +19,7 @@ const IntroScreen = () => {
           backgroundRepeat: "no-repeat"
         }}
       >
-        <div
-          className="flex w-auto h-auto rounded-full translate-x-[100%] translate-y-[100%]"
-          style={{
-            backgroundImage: 'url("/images/playButtonBg.png")',
-            backgroundSize: "cover",
-            backgroundRepeat: "no-repeat",
-            backgroundPosition: "center"
-          }}
-        >
+        <div className="flex w-auto h-auto rounded-full translate-x-[100%] translate-y-[100%] outline-none border-none">
           <PlayButton handleClick={handleClick} />
         </div>
       </div>
